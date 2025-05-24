@@ -13,7 +13,7 @@ double multiplicacion (double a, double b ){
 
 int main() {
 
-cout << "La suma de 1 y 2 es: " << suma(1,2) << endl;
+cout << "La suma de 2 y 2 es: " << suma(2,2) << endl;
 cout << "La resta de 3 y 2 es: " << resta(3,2) << endl;
 cout << "La multiplicacion de 3 y 2 es: " << multiplicacion(3,2) << endl;
 
