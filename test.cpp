@@ -4,28 +4,18 @@ using namespace std;
 double suma (double a, double b ){
     return a+b;
 }
-double resta (double c, double d ){
-    return c-d;
+double resta (double a, double b ){
+    return a-b;
+}
+double multiplicacion (double a, double b ){
+    return a*b;
 }
 
 int main() {
 
-double a =0;
-double b =0;
-double c =0;
-double d =0;
-cout<< "Bienvenido, a sumar!!" <<endl;
-cout<< "Ingrese el primer numero: " <<endl;
-cin >> a;
-cout<< "Ingrese el segundo numero: " <<endl;
-cin >> b;
-cout<< "La suma es: "<<double(suma(a,b)) <<endl;
-cout<< "Bienvenido, a restar!!" <<endl;
-cout<< "Ingrese el primer numero: " <<endl;
-cin >> c;
-cout<< "Ingrese el segundo numero: " <<endl;
-cin >> d;
-cout<< "La resta es: "<<double(resta(c,d)) <<endl;
+cout << "La suma de 2 y 2 es: " << suma(2,2) << endl;
+cout << "La resta de 3 y 2 es: " << resta(3,2) << endl;
+cout << "La multiplicacion de 3 y 2 es: " << multiplicacion(3,2) << endl;
 
 
 return 0;
