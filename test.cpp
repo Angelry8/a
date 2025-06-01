@@ -1,27 +1,46 @@
+#ifndef ESTUDIANTE_H
+#define ESTUDIANTE_H
+
 #include <iostream>
+#include <vector>
+#include <string>
+#include <iomanip>
+#include <limits>
+#include <cctype>
+
 using namespace std;
 
-double suma (double a, double b ){
-    return a+b;
-}
-double resta (double a, double b ){
-    return a-b;
-}
-double multiplicacion (double a, double b ){
-    return a*b;
-}
-double division (double a, double b ){
-    return a/b;
-}
+// Estructura principal para almacenar datos del estudiante
+struct Estudiante {
+    string primerNombre;
+    string primerApellido;
+    string segundoApellido;
+    int ciclo;
+    int cedula;
+    double calificaciones[5];
+    double promedio;
+    bool aprobado;
+    
+    // Constructor
+    Estudiante();
+};
 
-int main() {
+// Declaraciones de funciones para validación de entrada
+bool soloLetrasYEspacios(const string& texto);
+string validarNombre(const string& mensaje);
+int validarEnteroPositivo(const string& mensaje);
+double validarCalificacion(const string& mensaje);
 
-    cout << "Hola compañeros" << endl;
-cout << "La suma de 2 y 2 es: " << suma(2,2) << endl;
-cout << "La resta de 3 y 2 es: " << resta(3,2) << endl;
-cout << "La multiplicacion de 3 y 2 es: " << multiplicacion(3,2) << endl;
-cout << "La division de 4 y 2 es: " << division(4,2) << endl;
+// Declaraciones de funciones para captura de datos
+void capturarDatosEstudiante(Estudiante& estudiante, int numeroEstudiante);
 
-return 0;
+// Declaraciones de funciones para reportes
+void mostrarReporteAprobados(const vector<Estudiante>& estudiantes);
+void mostrarReporteReprobados(const vector<Estudiante>& estudiantes);
+void mostrarEstadisticas(const vector<Estudiante>& estudiantes);
 
-}
+// Declaraciones de funciones para interfaz
+void mostrarEncabezado();
+void mostrarEncabezadoEstudiante(int numeroEstudiante);
+
+#endif
