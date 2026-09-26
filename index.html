@@ -3,11 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documento</title>
+    <meta name="description" content="SICPA: consulte sus pagos y su consumo de agua de la ASADA Guayabal.">
+    <title>Inicio | SICPA</title>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-    <!-- El contenido de la pagina va aqui -->
+    <!-- Iconos: Lucide (https://lucide.dev), licencia ISC. -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+        <symbol id="i-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+        <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/></symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+        <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></symbol>
+        <symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+        <symbol id="i-file-chart" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 18v-1"/><path d="M12 18v-6"/><path d="M16 18v-3"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol>
+        <symbol id="i-log-out" viewBox="0 0 24 24"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="m9 15 2 2 4-4"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+        <symbol id="i-message" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol>
+        <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+        <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+    </svg>
 
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app" id="app">
+
+        <!-- Barra lateral -->
+        <aside class="lateral" id="lateral" aria-label="Navegación">
+            <div class="lateral-cabecera">
+                <div class="marca">
+                    <span class="marca-logo"><svg class="icono" aria-hidden="true"><use href="#i-droplet"/></svg></span>
+                    <span>
+                        <span class="marca-nombre">SICPA</span>
+                        <span class="marca-sub">ASADA Guayabal</span>
+                    </span>
+                </div>
+                <button type="button" class="boton-cerrar-menu" id="boton-cerrar-menu" aria-label="Cerrar menú">
+                    <svg class="icono" aria-hidden="true"><use href="#i-x"/></svg>
+                </button>
+            </div>
+
+            <div class="lateral-usuario">
+                <span class="avatar" id="avatar-iniciales" aria-hidden="true"></span>
+                <span>
+                    <span class="lateral-usuario-nombre" data-campo="nombre"></span>
+                    <span class="lateral-usuario-medidor">Medidor n.º <span data-campo="medidor"></span></span>
+                </span>
+            </div>
+
+            <nav class="nav" aria-label="Menú principal">
+                <p class="nav-grupo">Mi cuenta</p>
+                <ul class="nav-lista">
+                    <li><a class="nav-enlace" href="#inicio" data-destino="inicio"><svg class="icono" aria-hidden="true"><use href="#i-house"/></svg><span>Inicio</span></a></li>
+                    <li><a class="nav-enlace" href="#perfil" data-destino="perfil"><svg class="icono" aria-hidden="true"><use href="#i-user"/></svg><span>Mi perfil</span></a></li>
+                    <li><a class="nav-enlace" href="#historial" data-destino="historial"><svg class="icono" aria-hidden="true"><use href="#i-receipt"/></svg><span>Historial de pagos</span></a></li>
+                    <li><a class="nav-enlace" href="#consumo" data-destino="consumo"><svg class="icono" aria-hidden="true"><use href="#i-chart"/></svg><span>Consumo de agua</span></a></li>
+                    <li><a class="nav-enlace" href="#soporte" data-destino="soporte"><svg class="icono" aria-hidden="true"><use href="#i-headset"/></svg><span>Soporte</span></a></li>
+                </ul>
+
+                <div data-solo-admin>
+                    <p class="nav-grupo">Administración</p>
+                    <ul class="nav-lista">
+                        <li><a class="nav-enlace" href="#medidores" data-destino="medidores"><svg class="icono" aria-hidden="true"><use href="#i-gauge"/></svg><span>Medidores</span></a></li>
+                        <li><a class="nav-enlace" href="#tarifas" data-destino="tarifas"><svg class="icono" aria-hidden="true"><use href="#i-file-chart"/></svg><span>Tarifas y reportes</span></a></li>
+                        <li><a class="nav-enlace" href="#usuarios" data-destino="usuarios"><svg class="icono" aria-hidden="true"><use href="#i-users"/></svg><span>Usuarios</span></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="lateral-pie">
+                <button type="button" class="nav-enlace" id="boton-salir">
+                    <svg class="icono" aria-hidden="true"><use href="#i-log-out"/></svg><span>Cerrar sesión</span>
+                </button>
+            </div>
+        </aside>
+
+        <div class="velo" id="velo" hidden></div>
+
+        <!-- Contenido principal -->
+        <div class="principal">
+            <header class="barra-superior">
+                <button type="button" class="boton-menu" id="boton-menu" aria-controls="lateral" aria-expanded="false">
+                    <svg class="icono" aria-hidden="true"><use href="#i-menu"/></svg>
+                    <span>Menú</span>
+                </button>
+                <h1 class="titulo-vista" id="titulo-vista" tabindex="-1">Inicio</h1>
+            </header>
+
+            <main class="contenido" id="contenido" tabindex="-1">
+
+                <!-- INICIO -->
+                <section class="vista" data-vista="inicio">
+                    <p class="saludo">Hola, <span data-campo="nombreCorto"></span>. Este es el estado de su servicio de agua.</p>
+
+                    <article class="tarjeta recibo" id="tarjeta-recibo">
+                        <span class="recibo-icono"><svg class="icono" aria-hidden="true"><use id="recibo-icono-uso" href="#i-alert"/></svg></span>
+                        <div class="recibo-cuerpo">
+                            <p class="recibo-periodo">Recibo de <span id="recibo-periodo"></span></p>
+                            <p class="recibo-estado" id="recibo-estado"></p>
+                            <p class="recibo-monto" id="recibo-monto"></p>
+                            <p class="recibo-vence" id="recibo-vence"></p>
+                        </div>
+                    </article>
+
+                    <p class="nota">
+                        <svg class="icono" aria-hidden="true"><use href="#i-wallet"/></svg>
+                        <span>En SICPA solo se <strong>consultan</strong> los pagos. Para pagar, use los medios de siempre de la ASADA.</span>
+                    </p>
+
+                    <div class="rejilla-3">
+                        <article class="tarjeta dato">
+                            <span class="dato-icono"><svg class="icono" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+                            <p class="dato-titulo">Último pago</p>
+                            <p class="dato-valor" id="inicio-ultimo-monto"></p>
+                            <p class="dato-detalle" id="inicio-ultimo-fecha"></p>
+                        </article>
+                        <article class="tarjeta dato">
+                            <span class="dato-icono"><svg class="icono" aria-hidden="true"><use href="#i-droplet"/></svg></span>
+                            <p class="dato-titulo">Consumo del mes</p>
+                            <p class="dato-valor" id="inicio-consumo"></p>
+                            <p class="dato-detalle" id="inicio-consumo-detalle"></p>
+                        </article>
+                        <article class="tarjeta dato">
+                            <span class="dato-icono"><svg class="icono" aria-hidden="true"><use href="#i-bell"/></svg></span>
+                            <p class="dato-titulo">Recordatorios por WhatsApp</p>
+                            <p class="dato-valor">Activos</p>
+                            <p class="dato-detalle">Al número <span data-campo="whatsapp"></span></p>
+                        </article>
+                    </div>
+
+                    <h2 class="subtitulo">Accesos rápidos</h2>
+                    <div class="accesos">
+                        <a class="acceso" href="#historial"><svg class="icono" aria-hidden="true"><use href="#i-receipt"/></svg>Ver mis pagos</a>
+                        <a class="acceso" href="#consumo"><svg class="icono" aria-hidden="true"><use href="#i-chart"/></svg>Ver mi consumo</a>
+                        <a class="acceso" href="#perfil"><svg class="icono" aria-hidden="true"><use href="#i-user"/></svg>Actualizar mis datos</a>
+                        <a class="acceso" href="#soporte"><svg class="icono" aria-hidden="true"><use href="#i-headset"/></svg>Pedir ayuda</a>
+                    </div>
+                </section>
+
+                <!-- PERFIL -->
+                <section class="vista" data-vista="perfil" hidden>
+                    <div class="rejilla-2">
+                        <article class="tarjeta">
+                            <h2 class="tarjeta-titulo">Datos del medidor</h2>
+                            <dl class="datos">
+                                <div><dt>Nombre del dueño</dt><dd data-campo="nombre"></dd></div>
+                                <div><dt>Cédula</dt><dd data-campo="cedula"></dd></div>
+                                <div><dt>Número de medidor</dt><dd data-campo="medidor"></dd></div>
+                                <div><dt>Dirección</dt><dd data-campo="direccion"></dd></div>
+                            </dl>
+                            <p class="texto-suave">Si alguno de estos datos está mal, comuníquese con la ASADA.</p>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h2 class="tarjeta-titulo">Datos de contacto</h2>
+                            <form id="form-perfil" novalidate>
+                                <div class="campo">
+                                    <label for="perfil-whatsapp">Número de WhatsApp</label>
+                                    <input id="perfil-whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="8888-8888" aria-describedby="ayuda-whatsapp error-whatsapp">
+                                    <p class="campo-ayuda" id="ayuda-whatsapp">Aquí le llegan los recordatorios de pago.</p>
+                                    <p class="campo-error" id="error-whatsapp" hidden></p>
+                                </div>
+                                <div class="campo">
+                                    <label for="perfil-correo">Correo electrónico</label>
+                                    <input id="perfil-correo" name="correo" type="email" autocomplete="email" placeholder="nombre@correo.com" aria-describedby="error-correo">
+                                    <p class="campo-error" id="error-correo" hidden></p>
+                                </div>
+                                <button type="submit" class="boton boton-primario">Guardar cambios</button>
+                            </form>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- HISTORIAL -->
+                <section class="vista" data-vista="historial" hidden>
+                    <form class="tarjeta filtros" id="form-filtro" novalidate>
+                        <div class="campo">
+                            <label for="filtro-desde">Desde</label>
+                            <input id="filtro-desde" name="desde" type="date">
+                        </div>
+                        <div class="campo">
+                            <label for="filtro-hasta">Hasta</label>
+                            <input id="filtro-hasta" name="hasta" type="date">
+                        </div>
+                        <div class="filtros-botones">
+                            <button type="submit" class="boton boton-primario">Filtrar</button>
+                            <button type="button" class="boton boton-secundario" id="filtro-limpiar">Ver todos</button>
+                        </div>
+                        <p class="campo-error filtros-error" id="error-filtro" hidden></p>
+                    </form>
+
+                    <p class="resumen" id="historial-resumen" aria-live="polite"></p>
+
+                    <div class="tarjeta tabla-marco">
+                        <table class="tabla">
+                            <caption class="solo-lectores">Pagos registrados por la ASADA</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha de pago</th>
+                                    <th scope="col">Recibo de</th>
+                                    <th scope="col">N.º de recibo</th>
+                                    <th scope="col" class="numero">Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-pagos"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- CONSUMO -->
+                <section class="vista" data-vista="consumo" hidden>
+                    <div class="rejilla-3">
+                        <article class="tarjeta dato">
+                            <p class="dato-titulo">Este mes</p>
+                            <p class="dato-valor" id="consumo-actual"></p>
+                            <p class="dato-detalle" id="consumo-actual-mes"></p>
+                        </article>
+                        <article class="tarjeta dato">
+                            <p class="dato-titulo">Promedio de 12 meses</p>
+                            <p class="dato-valor" id="consumo-promedio"></p>
+                            <p class="dato-detalle">Por mes</p>
+                        </article>
+                        <article class="tarjeta dato">
+                            <p class="dato-titulo">Comparado con el mes anterior</p>
+                            <p class="dato-valor" id="consumo-diferencia"></p>
+                            <p class="dato-detalle" id="consumo-diferencia-detalle"></p>
+                        </article>
+                    </div>
+
+                    <article class="tarjeta">
+                        <h2 class="tarjeta-titulo">Consumo de los últimos 12 meses, en metros cúbicos</h2>
+                        <div class="grafico" id="grafico-consumo" role="img"></div>
+                    </article>
+
+                    <p class="nota">
+                        <svg class="icono" aria-hidden="true"><use href="#i-droplet"/></svg>
+                        <span>El consumo aparece solo cuando la ASADA registra la lectura del medidor. Un metro cúbico son 1000 litros.</span>
+                    </p>
+                </section>
+
+                <!-- SOPORTE -->
+                <section class="vista" data-vista="soporte" hidden>
+                    <div class="rejilla-2">
+                        <article class="tarjeta">
+                            <h2 class="tarjeta-titulo">Contacte a la ASADA</h2>
+                            <ul class="contactos">
+                                <li><span class="contacto-icono"><svg class="icono" aria-hidden="true"><use href="#i-phone"/></svg></span><span><strong>Teléfono</strong><span data-asada="telefono"></span></span></li>
+                                <li><span class="contacto-icono"><svg class="icono" aria-hidden="true"><use href="#i-message"/></svg></span><span><strong>WhatsApp</strong><span data-asada="whatsapp"></span></span></li>
+                                <li><span class="contacto-icono"><svg class="icono" aria-hidden="true"><use href="#i-calendar"/></svg></span><span><strong>Horario de atención</strong><span data-asada="horario"></span></span></li>
+                                <li><span class="contacto-icono"><svg class="icono" aria-hidden="true"><use href="#i-map-pin"/></svg></span><span><strong>Oficina</strong><span data-asada="direccion"></span></span></li>
+                            </ul>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h2 class="tarjeta-titulo">Escríbanos</h2>
+                            <form id="form-soporte" novalidate>
+                                <div class="campo">
+                                    <label for="soporte-tipo">¿Sobre qué es su mensaje?</label>
+                                    <select id="soporte-tipo" name="tipo">
+                                        <option>Una consulta sobre mi recibo</option>
+                                        <option>Reportar una fuga o un daño</option>
+                                        <option>Un problema con esta página</option>
+                                        <option>Otro tema</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label for="soporte-mensaje">Mensaje</label>
+                                    <textarea id="soporte-mensaje" name="mensaje" rows="5" aria-describedby="error-mensaje"></textarea>
+                                    <p class="campo-error" id="error-mensaje" hidden></p>
+                                </div>
+                                <button type="submit" class="boton boton-primario">Enviar mensaje</button>
+                            </form>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- ADMINISTRACION: MEDIDORES -->
+                <section class="vista" data-vista="medidores" hidden>
+                    <p class="aviso-demo">Vista de ejemplo del panel administrativo. En la versión final solo la verá el personal de la ASADA.</p>
+
+                    <div class="barra-herramientas">
+                        <div class="buscador">
+                            <label for="buscar-medidor" class="solo-lectores">Buscar medidor</label>
+                            <svg class="icono" aria-hidden="true"><use href="#i-search"/></svg>
+                            <input id="buscar-medidor" type="search" placeholder="Buscar por número, dueño o cédula">
+                        </div>
+                        <button type="button" class="boton boton-primario" id="boton-agregar-medidor">Agregar medidor</button>
+                    </div>
+
+                    <div class="tarjeta tabla-marco">
+                        <table class="tabla">
+                            <caption class="solo-lectores">Medidores registrados</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Medidor</th>
+                                    <th scope="col">Dueño</th>
+                                    <th scope="col">Cédula</th>
+                                    <th scope="col">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-medidores"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ADMINISTRACION: TARIFAS Y REPORTES -->
+                <section class="vista" data-vista="tarifas" hidden>
+                    <p class="aviso-demo">Vista de ejemplo del panel administrativo. En la versión final solo la verá el personal de la ASADA.</p>
+
+                    <div class="rejilla-3">
+                        <article class="tarjeta pendiente">
+                            <h2 class="tarjeta-titulo">Tarifa vigente</h2>
+                            <p class="texto-suave">Por definir con la ASADA: cargo fijo y precio por metro cúbico.</p>
+                        </article>
+                        <article class="tarjeta pendiente">
+                            <h2 class="tarjeta-titulo">Recaudación del mes</h2>
+                            <p class="texto-suave">Reporte de pagos registrados por periodo.</p>
+                        </article>
+                        <article class="tarjeta pendiente">
+                            <h2 class="tarjeta-titulo">Recibos pendientes</h2>
+                            <p class="texto-suave">Abonados con recibos sin pagar, para los recordatorios.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- ADMINISTRACION: USUARIOS -->
+                <section class="vista" data-vista="usuarios" hidden>
+                    <p class="aviso-demo">Vista de ejemplo del panel administrativo. En la versión final solo la verá el personal de la ASADA.</p>
+
+                    <div class="tarjeta tabla-marco">
+                        <table class="tabla">
+                            <caption class="solo-lectores">Usuarios registrados en SICPA</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Cédula</th>
+                                    <th scope="col">Medidor</th>
+                                    <th scope="col">WhatsApp</th>
+                                    <th scope="col">Registrado el</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-usuarios"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="aviso" id="aviso" role="status" aria-live="polite" hidden></div>
+
+    <script src="js/datos.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
