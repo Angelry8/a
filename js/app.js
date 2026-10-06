@@ -89,7 +89,7 @@
         botonMenu.setAttribute("aria-expanded", "true");
         actualizarInert();
         const actual = lateral.querySelector('[aria-current="page"]');
-        (actual || lateral.querySelector(".nav-enlace")).focus();
+        (actual || lateral.querySelector("[data-destino]")).focus();
     }
 
     function cerrarMenu(devolverFoco) {
@@ -122,10 +122,10 @@
     }
 
     function mostrarVista(id, moverFoco) {
-        $$(".vista").forEach((seccion) => {
+        $$("[data-vista]").forEach((seccion) => {
             seccion.hidden = seccion.dataset.vista !== id;
         });
-        $$(".nav-enlace[data-destino]").forEach((enlace) => {
+        $$("[data-destino]").forEach((enlace) => {
             if (enlace.dataset.destino === id) {
                 enlace.setAttribute("aria-current", "page");
             } else {
@@ -177,8 +177,8 @@
         const pagado = recibo.estado === "pagado";
         const tarjeta = $("#tarjeta-recibo");
 
-        tarjeta.classList.toggle("recibo--al-dia", pagado);
-        tarjeta.classList.toggle("recibo--pendiente", !pagado);
+        // Los colores de la tarjeta dependen de data-estado (ver index.html)
+        tarjeta.dataset.estado = pagado ? "pagado" : "pendiente";
         $("#recibo-icono-uso").setAttribute("href", pagado ? "#i-check" : "#i-alert");
         $("#recibo-periodo").textContent = periodoLargo(recibo.periodo);
         $("#recibo-estado").textContent = pagado ? "Pagado: está al día" : "Pendiente de pago";
@@ -208,14 +208,24 @@
 
     // ---------- Tablas ----------
 
-    // celdas: [{ texto, etiqueta, clase, nodo }]. Se usa textContent para no
+    // En celular (menos de 640 px) cada fila se muestra como tarjeta: la celda
+    // pasa a flex y su encabezado sale de data-etiqueta con ::before.
+    const CLASES_FILA = "block border-b border-borde py-3 last:border-b-0 sm:table-row sm:border-b-0 sm:py-0";
+    const CLASES_CELDA = "flex justify-between gap-4 px-5 py-1.5 text-right " +
+        "before:text-left before:font-semibold before:text-texto-suave before:content-[attr(data-etiqueta)] " +
+        "sm:table-cell sm:border-b sm:border-borde sm:px-5 sm:py-4 sm:text-left sm:align-top sm:before:content-none " +
+        "sm:[tr:last-child>&]:border-b-0";
+    const CLASES_NUMERO = "tabular-nums sm:text-right";
+
+    // celdas: [{ texto, etiqueta, numero, nodo }]. Se usa textContent para no
     // interpretar como HTML lo que venga de la base de datos.
     function crearFila(celdas) {
         const fila = document.createElement("tr");
+        fila.className = CLASES_FILA;
         celdas.forEach((celda) => {
             const td = document.createElement("td");
             td.dataset.etiqueta = celda.etiqueta;
-            if (celda.clase) td.className = celda.clase;
+            td.className = CLASES_CELDA + (celda.numero ? " " + CLASES_NUMERO : "");
             if (celda.nodo) td.append(celda.nodo);
             else td.textContent = celda.texto;
             fila.append(td);
@@ -225,9 +235,10 @@
 
     function filaVacia(columnas, mensaje) {
         const fila = document.createElement("tr");
+        fila.className = CLASES_FILA;
         const td = document.createElement("td");
         td.colSpan = columnas;
-        td.className = "tabla-vacia";
+        td.className = "block px-5 py-4 text-center text-texto-suave sm:table-cell";
         td.textContent = mensaje;
         fila.append(td);
         return fila;
@@ -235,7 +246,8 @@
 
     function crearEtiqueta(estado) {
         const span = document.createElement("span");
-        span.className = "etiqueta etiqueta--" + estado;
+        span.className = "inline-block rounded-full px-3 py-1 text-[0.85rem] font-bold " +
+            (estado === "activo" ? "bg-verde-fondo text-verde" : "bg-rojo-fondo text-rojo");
         span.textContent = estado === "activo" ? "Activo" : "Inactivo";
         return span;
     }
@@ -260,7 +272,7 @@
                 { etiqueta: "Fecha de pago", texto: fechaLarga(pago.fecha) },
                 { etiqueta: "Recibo de", texto: periodoLargo(pago.periodo) },
                 { etiqueta: "N.º de recibo", texto: pago.recibo },
-                { etiqueta: "Monto", texto: colones(pago.monto), clase: "numero" }
+                { etiqueta: "Monto", texto: colones(pago.monto), numero: true }
             ]));
         });
 
@@ -330,21 +342,22 @@
         const maximo = Math.max(...lecturas.map((l) => l.m3));
         lecturas.forEach((lectura, i) => {
             const barra = document.createElement("div");
-            barra.className = "barra" + (i === lecturas.length - 1 ? " barra--actual" : "");
+            const esActual = i === lecturas.length - 1;
+            barra.className = "flex min-w-0 flex-1 flex-col items-center gap-1.5";
 
             const pista = document.createElement("div");
-            pista.className = "barra-pista";
+            pista.className = "flex min-h-0 w-full flex-1 flex-col items-center justify-end gap-1.5";
 
             const valor = document.createElement("span");
-            valor.className = "barra-valor";
+            valor.className = "text-[0.7rem] font-bold text-azul-900 sm:text-[0.85rem]";
             valor.textContent = formatoDecimal.format(lectura.m3);
 
             const relleno = document.createElement("span");
-            relleno.className = "barra-relleno";
+            relleno.className = "w-full max-w-[48px] rounded-b-sm rounded-t-lg " + (esActual ? "bg-azul-600" : "bg-azul-200");
             relleno.style.height = (maximo ? (lectura.m3 / maximo) * 85 : 0) + "%";
 
             const mes = document.createElement("span");
-            mes.className = "barra-mes";
+            mes.className = "whitespace-nowrap text-[0.7rem] text-texto-suave sm:text-[0.8rem]";
             mes.textContent = mesCorto(lectura.periodo);
 
             pista.append(valor, relleno);

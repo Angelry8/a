@@ -74,16 +74,16 @@ Canal de contacto con la ASADA para reportar problemas o hacer consultas.
 
 ## 11. Frontend (maquetación)
 
-Maqueta navegable en HTML, CSS y JavaScript sin dependencias ni paso de compilación, para no amarrar el stack mientras se define (punto 10). Se abre con doble clic en `ingresar.html` (o en `index.html`, que manda a ingresar si no hay sesión).
+Maqueta navegable en HTML, [Tailwind CSS](https://tailwindcss.com) (por CDN) y JavaScript, sin paso de compilación, para no amarrar el stack mientras se define (punto 10). Se abre con doble clic en `ingresar.html` (o en `index.html`, que manda a ingresar si no hay sesión).
 
 ```
-ingresar.html    Pantallas de ingreso y de creación de cuenta
-index.html       Estructura: barra lateral, barra superior y una sección por vista
-css/estilos.css  Paleta azul y blanca, componentes y ajustes para celular
-js/datos.js      Datos de ejemplo, ficticios; se reemplazan por la base de datos de la ASADA
-js/sesion.js     Sesión del usuario (sessionStorage); la comparten las dos páginas
-js/acceso.js     Validación de los formularios de ingreso y de creación de cuenta
-js/app.js        Navegación entre vistas, llenado de datos y validación de formularios
+ingresar.html          Pantallas de ingreso y de creación de cuenta
+index.html             Estructura: barra lateral, barra superior y una sección por vista
+js/tailwind-config.js  Paleta azul y blanca de SICPA y estilos base (letra de 18 px, foco visible)
+js/datos.js            Datos de ejemplo, ficticios; se reemplazan por la base de datos de la ASADA
+js/sesion.js           Sesión del usuario (sessionStorage); la comparten las dos páginas
+js/acceso.js           Validación de los formularios de ingreso y de creación de cuenta
+js/app.js              Navegación entre vistas, llenado de datos y validación de formularios
 ```
 
 **Ingreso y creación de cuenta (`ingresar.html`).**
@@ -102,6 +102,8 @@ Cuentas de prueba (en `js/datos.js`):
 Para probar la creación de cuenta: cédula 5-0412-0987 con el medidor 2.
 
 **Vistas.** Cada módulo de la barra lateral es una `<section data-vista="...">` en `index.html` y se abre con su ancla (`#inicio`, `#perfil`, `#historial`, `#consumo`, `#soporte`). El grupo Administración (`#medidores`, `#tarifas`, `#usuarios`) solo aparece si la sesión es de rol `"admin"`.
+
+**Estilos.** Todo el diseño está hecho con clases de Tailwind en el HTML; no hay hoja de estilos propia. Los colores se usan por su nombre (`bg-azul-700`, `text-texto-suave`, `border-borde`, `bg-verde-fondo`...) y se definen una sola vez en `js/tailwind-config.js`. Lo que arma JavaScript (filas de las tablas, etiquetas, barras del gráfico) también lleva clases de Tailwind, en `js/app.js`.
 
 **Decisiones de diseño para el público de la ASADA:**
 
