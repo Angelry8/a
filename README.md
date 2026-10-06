@@ -65,16 +65,27 @@ Canal de contacto con la ASADA para reportar problemas o hacer consultas.
 - Delegación de acceso para familiares o terceros.
 - Acceso simplificado para adultos mayores.
 
-## 10. Pendientes por definir
+## 10. Stack tecnológico
 
-- Stack tecnológico y arquitectura.
+| Capa | Tecnología | Para qué |
+|---|---|---|
+| Frontend | HTML, CSS con [Tailwind](https://tailwindcss.com) y JavaScript | Pantallas; diseño rápido con clases utilitarias |
+| Backend | Node.js con [NestJS](https://nestjs.com) | Lógica del sistema, autenticación y reglas de negocio |
+| Comunicación | API REST | Conecta el frontend con el backend |
+| Acceso a datos | [TypeORM](https://typeorm.io) | Comunicación entre el backend y la base de datos |
+| Base de datos | MySQL, y MongoDB o Firebase | Guardar los datos |
+| Herramientas | VS Code y GitHub | Desarrollo y control de versiones |
+
+## 11. Pendientes por definir
+
+- Si se usa MongoDB o Firebase junto a MySQL, y qué datos guarda cada una.
 - Forma de integración con el sistema actual de la ASADA.
 - Proveedor para el envío de mensajes por WhatsApp.
 - Frecuencia o fecha de envío de los recordatorios.
 
-## 11. Frontend (maquetación)
+## 12. Frontend (maquetación)
 
-Maqueta navegable en HTML, [Tailwind CSS](https://tailwindcss.com) (por CDN) y JavaScript, sin paso de compilación, para no amarrar el stack mientras se define (punto 10). Se abre con doble clic en `ingresar.html` (o en `index.html`, que manda a ingresar si no hay sesión).
+Maqueta navegable en HTML, [Tailwind CSS](https://tailwindcss.com) (por CDN) y JavaScript, sin paso de compilación. Por ahora usa datos de ejemplo; cuando exista el backend en NestJS (punto 10), los datos llegarán por la API REST. Se abre con doble clic en `ingresar.html` (o en `index.html`, que manda a ingresar si no hay sesión).
 
 ```
 ingresar.html          Pantallas de ingreso y de creación de cuenta
