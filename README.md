@@ -74,16 +74,34 @@ Canal de contacto con la ASADA para reportar problemas o hacer consultas.
 
 ## 11. Frontend (maquetación)
 
-Maqueta navegable en HTML, CSS y JavaScript sin dependencias ni paso de compilación, para no amarrar el stack mientras se define (punto 10). Se abre con doble clic en `index.html`.
+Maqueta navegable en HTML, CSS y JavaScript sin dependencias ni paso de compilación, para no amarrar el stack mientras se define (punto 10). Se abre con doble clic en `ingresar.html` (o en `index.html`, que manda a ingresar si no hay sesión).
 
 ```
+ingresar.html    Pantallas de ingreso y de creación de cuenta
 index.html       Estructura: barra lateral, barra superior y una sección por vista
 css/estilos.css  Paleta azul y blanca, componentes y ajustes para celular
 js/datos.js      Datos de ejemplo, ficticios; se reemplazan por la base de datos de la ASADA
+js/sesion.js     Sesión del usuario (sessionStorage); la comparten las dos páginas
+js/acceso.js     Validación de los formularios de ingreso y de creación de cuenta
 js/app.js        Navegación entre vistas, llenado de datos y validación de formularios
 ```
 
-**Vistas.** Cada módulo de la barra lateral es una `<section data-vista="...">` en `index.html` y se abre con su ancla (`#inicio`, `#perfil`, `#historial`, `#consumo`, `#soporte`). El grupo Administración (`#medidores`, `#tarifas`, `#usuarios`) solo aparece si `rol` es `"admin"` en `js/datos.js`.
+**Ingreso y creación de cuenta (`ingresar.html`).**
+
+- *Ingresar:* cédula (con o sin guiones) y contraseña. Si alguno de los dos datos está mal, el mensaje es el mismo, para no revelar qué cédulas tienen cuenta. "¿Olvidó su contraseña?" muestra el contacto de la ASADA, que es quien la restablece en v1.
+- *Crear mi cuenta:* en tres pasos (su medidor, sus datos de contacto, su contraseña). Se pide el **número de medidor** además de la cédula, para comprobar que quien se registra es el dueño. La cuenta se crea solo si el medidor está a nombre de esa cédula, está activo y la cédula no tiene cuenta todavía.
+- Los campos de contraseña tienen un botón "Mostrar" con texto, pensado para quien escribe despacio.
+
+Cuentas de prueba (en `js/datos.js`):
+
+| Cédula | Contraseña | Rol |
+|---|---|---|
+| 2-0733-0726 | agua2026 | Abonado |
+| 4-0250-0618 | asada2026 | Personal de la ASADA (ve el grupo Administración) |
+
+Para probar la creación de cuenta: cédula 5-0412-0987 con el medidor 2.
+
+**Vistas.** Cada módulo de la barra lateral es una `<section data-vista="...">` en `index.html` y se abre con su ancla (`#inicio`, `#perfil`, `#historial`, `#consumo`, `#soporte`). El grupo Administración (`#medidores`, `#tarifas`, `#usuarios`) solo aparece si la sesión es de rol `"admin"`.
 
 **Decisiones de diseño para el público de la ASADA:**
 
@@ -92,6 +110,8 @@ js/app.js        Navegación entre vistas, llenado de datos y validación de for
 - En celular, la barra lateral se abre con un botón "Menú" que lleva texto, no solo el ícono.
 - Las tablas se convierten en tarjetas en pantallas angostas.
 
-**Todavía es demostración:** los formularios validan, pero no guardan ni envían nada, y aún no existen las pantallas de inicio de sesión y registro.
+**Todavía es demostración:** los formularios validan, pero no guardan ni envían nada. La sesión vive en el navegador y se borra al cerrar la pestaña; la cuenta creada no se guarda, y después de ingresar siempre se muestran los datos de ejemplo de Ana. En la versión final, la contraseña se revisa en el servidor y se guarda cifrada.
+
+**Por definir con la ASADA:** si el correo es obligatorio al registrarse (muchos adultos mayores no tienen), cómo se registran los dueños con cédula de residencia (DIMEX, que no tiene 9 números) y cómo se restablece una contraseña olvidada.
 
 Iconos: [Lucide](https://lucide.dev), licencia ISC.

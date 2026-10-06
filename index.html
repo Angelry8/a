@@ -6,6 +6,12 @@
     <meta name="description" content="SICPA: consulte sus pagos y su consumo de agua de la ASADA Guayabal.">
     <title>Inicio | SICPA</title>
     <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Sin sesion iniciada, se va a la pantalla de ingreso antes de pintar nada -->
+    <script src="js/sesion.js"></script>
+    <script>
+        if (!window.SICPA_SESION.leer()) location.replace("ingresar.html");
+    </script>
 </head>
 <body>
 

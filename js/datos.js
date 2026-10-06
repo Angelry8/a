@@ -3,8 +3,13 @@
 // a la base de datos de la ASADA.
 
 window.SICPA_DATOS = {
-    // "admin" muestra el grupo Administración en el menú; "usuario" lo oculta.
-    rol: "admin",
+    // Cuentas para probar la pantalla de ingreso. Son ficticias: en la versión
+    // final las contraseñas se guardan cifradas en el servidor y nunca llegan
+    // al navegador. rol "admin" muestra el grupo Administración en el menú.
+    cuentasDemo: [
+        { cedula: "2-0733-0726", contrasena: "agua2026", rol: "usuario" },
+        { cedula: "4-0250-0618", contrasena: "asada2026", rol: "admin" }
+    ],
 
     usuario: {
         nombre: "Ana Rodríguez Solís",

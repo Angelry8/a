@@ -4,7 +4,12 @@
     "use strict";
 
     const D = window.SICPA_DATOS;
-    const esAdmin = D.rol === "admin";
+    const sesion = window.SICPA_SESION.leer();
+
+    // Sin sesion, index.html ya mando a ingresar.html; aqui no se pinta nada.
+    if (!sesion) return;
+
+    const esAdmin = sesion.rol === "admin";
 
     const VISTAS = {
         inicio: { titulo: "Inicio" },
@@ -453,8 +458,10 @@
     $("#boton-agregar-medidor").addEventListener("click", () =>
         mostrarAviso("Pendiente: el formulario para agregar medidores todavía no existe."));
 
-    $("#boton-salir").addEventListener("click", () =>
-        mostrarAviso("Pendiente: la pantalla de inicio de sesión todavía no existe."));
+    $("#boton-salir").addEventListener("click", () => {
+        window.SICPA_SESION.cerrar();
+        location.replace("ingresar.html");
+    });
 
     // ---------- Arranque ----------
 

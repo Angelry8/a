@@ -562,6 +562,7 @@ textarea {
     border: 2px solid transparent;
     border-radius: 12px;
     font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
 }
 
@@ -871,6 +872,156 @@ textarea {
     box-shadow: 0 8px 24px rgba(8, 31, 63, 0.25);
 }
 
+/* ---------- Pantalla de ingreso y creacion de cuenta ---------- */
+
+.pagina-ingreso {
+    background: linear-gradient(var(--azul-900), var(--azul-900)) top / 100% 260px no-repeat, var(--fondo);
+}
+
+.ingreso {
+    width: min(560px, 100%);
+    margin: 0 auto;
+    padding: 40px 16px 64px;
+}
+
+.ingreso-marca {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    color: var(--blanco);
+}
+
+.ingreso-tarjeta {
+    padding: 32px;
+}
+
+.ingreso-titulo {
+    font-size: 1.6rem;
+    color: var(--azul-900);
+}
+
+.ingreso-titulo:focus {
+    outline: none;
+}
+
+.ingreso-intro {
+    margin: 6px 0 24px;
+}
+
+.ingreso-error {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--rojo-fondo);
+}
+
+/* Campo de contraseña con el boton "Mostrar" al lado */
+.campo-clave {
+    display: flex;
+    gap: 8px;
+}
+
+.campo-clave input {
+    flex: 1;
+    min-width: 0;
+}
+
+.boton-ver {
+    min-width: 104px;
+    min-height: 52px;
+    padding: 0 14px;
+    border: 2px solid var(--borde-fuerte);
+    border-radius: 12px;
+    background: var(--blanco);
+    color: var(--azul-800);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.boton-ver:hover {
+    border-color: var(--azul-600);
+    background: var(--azul-50);
+}
+
+.boton-ancho {
+    width: 100%;
+}
+
+.enlace-boton {
+    display: block;
+    min-height: 48px;
+    margin: 12px auto 0;
+    padding: 8px 12px;
+    border: 0;
+    background: none;
+    color: var(--azul-700);
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ingreso-olvido {
+    margin-top: 8px;
+}
+
+.ingreso-separador {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--borde);
+    text-align: center;
+}
+
+.ingreso-tarjeta .aviso-demo {
+    margin-top: 24px;
+}
+
+.ingreso-tarjeta .aviso-demo strong {
+    white-space: nowrap;
+}
+
+/* Grupos del formulario de registro */
+.grupo {
+    margin: 0 0 8px;
+    padding: 0;
+    border: 0;
+}
+
+.grupo legend {
+    width: 100%;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--borde);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--azul-800);
+}
+
+/* Cuenta creada */
+.ingreso-listo {
+    text-align: center;
+}
+
+.ingreso-listo-icono {
+    display: inline-grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: var(--verde-fondo);
+    color: var(--verde);
+}
+
+.ingreso-listo-icono .icono {
+    width: 34px;
+    height: 34px;
+}
+
 /* ---------- Pantallas medianas y celulares ---------- */
 
 @media (max-width: 900px) {
@@ -975,6 +1126,14 @@ textarea {
     .grafico {
         gap: 4px;
         height: 220px;
+    }
+
+    .ingreso {
+        padding-top: 28px;
+    }
+
+    .ingreso-tarjeta {
+        padding: 24px 20px;
     }
 
     .barra-valor {

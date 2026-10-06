@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ingrese a SICPA para consultar sus pagos y su consumo de agua de la ASADA Guayabal.">
+    <title>Ingresar | SICPA</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-ingreso">
+
+    <!-- Iconos: Lucide (https://lucide.dev), licencia ISC. -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+        <symbol id="i-message" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol>
+        <symbol id="i-log-in" viewBox="0 0 24 24"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></symbol>
+    </svg>
+
+    <div class="ingreso">
+
+        <header class="ingreso-marca">
+            <span class="marca-logo"><svg class="icono" aria-hidden="true"><use href="#i-droplet"/></svg></span>
+            <span>
+                <span class="marca-nombre">SICPA</span>
+                <span class="marca-sub">ASADA Guayabal</span>
+            </span>
+        </header>
+
+        <main>
+
+            <!-- INGRESAR -->
+            <section class="tarjeta ingreso-tarjeta" data-pantalla="ingresar" aria-labelledby="titulo-ingresar">
+                <h1 class="ingreso-titulo" id="titulo-ingresar" tabindex="-1">Ingresar</h1>
+                <p class="texto-suave ingreso-intro">Consulte sus pagos y su consumo de agua.</p>
+
+                <form id="form-ingresar" novalidate>
+                    <p class="campo-error ingreso-error" id="error-ingresar" role="alert" hidden></p>
+
+                    <div class="campo">
+                        <label for="ingresar-cedula">Cédula</label>
+                        <input id="ingresar-cedula" name="ingresar-cedula" type="text" inputmode="numeric" autocomplete="username" aria-describedby="ayuda-ingresar-cedula error-ingresar-cedula">
+                        <p class="campo-ayuda" id="ayuda-ingresar-cedula">La cédula del dueño del medidor, con o sin guiones. Por ejemplo: 1‑2345‑6789.</p>
+                        <p class="campo-error" id="error-ingresar-cedula" hidden></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="ingresar-clave">Contraseña</label>
+                        <div class="campo-clave">
+                            <input id="ingresar-clave" name="ingresar-clave" type="password" autocomplete="current-password" aria-describedby="error-ingresar-clave">
+                            <button type="button" class="boton-ver" data-ver="ingresar-clave" aria-pressed="false">Mostrar</button>
+                        </div>
+                        <p class="campo-error" id="error-ingresar-clave" hidden></p>
+                    </div>
+
+                    <button type="submit" class="boton boton-primario boton-ancho">
+                        <svg class="icono" aria-hidden="true"><use href="#i-log-in"/></svg>Ingresar
+                    </button>
+                </form>
+
+                <button type="button" class="enlace-boton" id="boton-olvido" aria-expanded="false" aria-controls="ayuda-olvido">¿Olvidó su contraseña?</button>
+                <div class="nota ingreso-olvido" id="ayuda-olvido" hidden>
+                    <svg class="icono" aria-hidden="true"><use href="#i-phone"/></svg>
+                    <span>Comuníquese con la ASADA para crear una contraseña nueva. Teléfono: <strong data-asada="telefono"></strong>. WhatsApp: <strong data-asada="whatsapp"></strong>.</span>
+                </div>
+
+                <div class="ingreso-separador">
+                    <p>¿Es la primera vez que usa SICPA?</p>
+                    <a class="boton boton-secundario boton-ancho" href="#registro">Crear mi cuenta</a>
+                </div>
+
+                <p class="aviso-demo">
+                    Demostración. Para probar, use la cédula <strong>2-0733-0726</strong> con la contraseña <strong>agua2026</strong>.
+                    Para ver el panel de la ASADA: <strong>4-0250-0618</strong> con <strong>asada2026</strong>.
+                </p>
+            </section>
+
+            <!-- CREAR CUENTA -->
+            <section class="tarjeta ingreso-tarjeta" data-pantalla="registro" aria-labelledby="titulo-registro" hidden>
+                <h1 class="ingreso-titulo" id="titulo-registro" tabindex="-1">Crear mi cuenta</h1>
+                <p class="texto-suave ingreso-intro">Solo el dueño del medidor puede crear la cuenta. Tenga a mano su cédula y un recibo de agua.</p>
+
+                <form id="form-registro" novalidate>
+                    <p class="campo-error ingreso-error" id="error-registro" role="alert" hidden></p>
+
+                    <fieldset class="grupo">
+                        <legend>1. Su medidor</legend>
+                        <div class="campo">
+                            <label for="registro-cedula">Cédula del dueño</label>
+                            <input id="registro-cedula" name="registro-cedula" type="text" inputmode="numeric" autocomplete="username" aria-describedby="ayuda-registro-cedula error-registro-cedula">
+                            <p class="campo-ayuda" id="ayuda-registro-cedula">Con o sin guiones. Por ejemplo: 1‑2345‑6789.</p>
+                            <p class="campo-error" id="error-registro-cedula" hidden></p>
+                        </div>
+                        <div class="campo">
+                            <label for="registro-medidor">Número de medidor</label>
+                            <input id="registro-medidor" name="registro-medidor" type="text" inputmode="numeric" aria-describedby="ayuda-registro-medidor error-registro-medidor">
+                            <p class="campo-ayuda" id="ayuda-registro-medidor">Aparece en su recibo de agua.</p>
+                            <p class="campo-error" id="error-registro-medidor" hidden></p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="grupo">
+                        <legend>2. Sus datos de contacto</legend>
+                        <div class="campo">
+                            <label for="registro-whatsapp">Número de WhatsApp</label>
+                            <input id="registro-whatsapp" name="registro-whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="8888-8888" aria-describedby="ayuda-registro-whatsapp error-registro-whatsapp">
+                            <p class="campo-ayuda" id="ayuda-registro-whatsapp">Aquí le llegan los recordatorios de pago.</p>
+                            <p class="campo-error" id="error-registro-whatsapp" hidden></p>
+                        </div>
+                        <div class="campo">
+                            <label for="registro-correo">Correo electrónico</label>
+                            <input id="registro-correo" name="registro-correo" type="email" autocomplete="email" placeholder="nombre@correo.com" aria-describedby="error-registro-correo">
+                            <p class="campo-error" id="error-registro-correo" hidden></p>
+                        </div>
+                        <div class="campo">
+                            <label for="registro-direccion">Dirección exacta</label>
+                            <textarea id="registro-direccion" name="registro-direccion" rows="3" autocomplete="street-address" placeholder="Por ejemplo: 200 metros norte de la escuela, casa verde de portón blanco" aria-describedby="error-registro-direccion"></textarea>
+                            <p class="campo-error" id="error-registro-direccion" hidden></p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="grupo">
+                        <legend>3. Su contraseña</legend>
+                        <div class="campo">
+                            <label for="registro-clave">Contraseña</label>
+                            <div class="campo-clave">
+                                <input id="registro-clave" name="registro-clave" type="password" autocomplete="new-password" aria-describedby="ayuda-registro-clave error-registro-clave">
+                                <button type="button" class="boton-ver" data-ver="registro-clave" aria-pressed="false">Mostrar</button>
+                            </div>
+                            <p class="campo-ayuda" id="ayuda-registro-clave">Al menos 8 letras o números. Anótela en un lugar seguro.</p>
+                            <p class="campo-error" id="error-registro-clave" hidden></p>
+                        </div>
+                        <div class="campo">
+                            <label for="registro-clave2">Escriba la contraseña otra vez</label>
+                            <div class="campo-clave">
+                                <input id="registro-clave2" name="registro-clave2" type="password" autocomplete="new-password" aria-describedby="error-registro-clave2">
+                                <button type="button" class="boton-ver" data-ver="registro-clave2" aria-pressed="false">Mostrar</button>
+                            </div>
+                            <p class="campo-error" id="error-registro-clave2" hidden></p>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="boton boton-primario boton-ancho">Crear mi cuenta</button>
+                </form>
+
+                <div class="ingreso-separador">
+                    <p>¿Ya tiene cuenta?</p>
+                    <a class="boton boton-secundario boton-ancho" href="#ingresar">Ingresar</a>
+                </div>
+
+                <p class="aviso-demo">
+                    Demostración. Para probar, use un medidor activo sin cuenta: cédula <strong>5-0412-0987</strong> con el medidor <strong>2</strong>.
+                </p>
+            </section>
+
+            <!-- CUENTA CREADA -->
+            <section class="tarjeta ingreso-tarjeta ingreso-listo" data-pantalla="listo" aria-labelledby="titulo-listo" hidden>
+                <span class="ingreso-listo-icono"><svg class="icono" aria-hidden="true"><use href="#i-check"/></svg></span>
+                <h1 class="ingreso-titulo" id="titulo-listo" tabindex="-1">Su cuenta quedó creada</h1>
+                <p class="texto-suave ingreso-intro">Desde ahora ingresa con su cédula y la contraseña que acaba de escribir.</p>
+                <a class="boton boton-primario boton-ancho" href="index.html">Ir a mi cuenta</a>
+                <p class="aviso-demo">Demostración: la cuenta no se guarda en la base de datos y se muestran datos de ejemplo.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/datos.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/acceso.js"></script>
+</body>
+</html>
